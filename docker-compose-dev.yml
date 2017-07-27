@@ -4,13 +4,13 @@ services:
     php-fpm:
         image: php:7.1.4-fpm
         volumes:
-            - /data/projects/project:/data/projects/project
+            - ./code:/data/projects/project
         deploy:
             mode: replicated
             replicas: 1
     nginx:
         image: project-nginx
         volumes:
-            - /data/projects/project:/data/projects/project
+            - ./code:/data/projects/project
         ports:
             - "27030:8080"
