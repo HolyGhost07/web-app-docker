@@ -20,4 +20,12 @@ $app->get('/hello/{name}', function (Request $request, Response $response) {
     return $response;
 });
 
+$app->get('/api', function (Request $request, Response $response) {
+    $response = $response->withHeader('Content-Type', 'application/json')
+        ->withStatus(200)
+        ->withJson(['code' => 200, 'result' => []]);
+
+    return $response;
+});
+
 $app->run();
