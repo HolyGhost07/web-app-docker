@@ -2,7 +2,7 @@ version: "3"
 
 services:
     php-fpm:
-        image: project-php
+        image: project-php-prod
         deploy:
             mode: replicated
             replicas: 2
@@ -10,3 +10,7 @@ services:
         image: project-nginx
         ports:
             - "27030:8080"
+    mongodb:
+        image: mongo:latest
+        volumes:
+            - ./mongodb/data:/data/db

@@ -28,4 +28,25 @@ $app->get('/api', function (Request $request, Response $response) {
     return $response;
 });
 
+$app->get('/db', function (Request $request, Response $response) {
+    $collection = (new MongoDB\Client("mongodb://mongodb:27017"))->test->users;
+
+    // $insertOneResult = $collection->insertOne([
+    //     'username' => 'admin',
+    //     'email' => 'admin@example.com',
+    //     'name' => 'Admin User',
+    // ]);
+
+    $id = new MongoDB\BSON\ObjectID("59a2afc2bac4410006572222");
+    $record = $collection->findOne(['_id' => $id]);
+
+    print_r($record->getArrayCopy());
+
+    // printf("Inserted %d document(s)\n", $insertOneResult->getInsertedCount());
+
+    // var_dump($insertOneResult->getInsertedId());
+
+    return $response;
+});
+
 $app->run();

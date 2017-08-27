@@ -2,7 +2,8 @@ NAME=app
 
 build:
 	docker build -f nginx/Dockerfile -t project-nginx .
-	docker build -f php/Dockerfile -t project-php .
+	docker build -f php/prod/Dockerfile -t project-php-prod .
+	docker build -f php/dev/Dockerfile -t project-php-dev .
 
 run-dev:
 	docker stack deploy -c docker-compose-dev.yml $(NAME)

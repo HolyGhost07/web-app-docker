@@ -1,12 +1,14 @@
-FROM php:7.1-fpm
+FROM php:fpm
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
     php composer-setup.php && \
     php -r "unlink('composer-setup.php');" && \
     mv composer.phar /usr/bin/composer && \
     apt-get update && \
-    apt-get install -y git zlib1g-dev && \
-    docker-php-ext-install zip
+    apt-get install -y git zlib1g-dev libcurl4-openssl-dev pkg-config libssl-dev && \
+    docker-php-ext-install zip && \
+    pecl install mongodb  && \
+    docker-php-ext-enable mongodb
 
 COPY php/composer.json /data/projects/project/
 
