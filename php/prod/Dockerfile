@@ -10,7 +10,7 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
     pecl install mongodb  && \
     docker-php-ext-enable mongodb
 
-COPY php/composer.json /data/projects/project/
+COPY code/composer.json /data/projects/project/
 
 RUN cd /data/projects/project && \
     composer install --ignore-platform-reqs --no-plugins --no-scripts
