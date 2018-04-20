@@ -29,6 +29,9 @@ $app->get('/api', function (Request $request, Response $response) {
 });
 
 $app->get('/db', function (Request $request, Response $response) {
+    // connect to db from console
+    // docker run -it --network webappdocker_default --rm mongo sh -c 'exec mongo "mongodb:27017"'
+
     $collection = (new MongoDB\Client("mongodb://mongodb:27017"))->test->users;
 
     // $insertOneResult = $collection->insertOne([

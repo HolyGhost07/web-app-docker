@@ -1,8 +1,8 @@
-FROM nginx:latest
+# FROM nginx:1.13.12-alpine
+FROM nginx
 
 RUN rm -rf /etc/nginx/conf.d
 
-COPY nginx/nginx.conf /etc/nginx/nginx.conf
-COPY code/. /data/projects/project/.
+COPY nginx.conf /etc/nginx/nginx.conf
 
-EXPOSE 8080
+EXPOSE 80

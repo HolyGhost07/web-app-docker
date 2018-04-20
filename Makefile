@@ -1,24 +1,13 @@
 NAME=app
 
-build:
-	docker build -f nginx/Dockerfile -t project-nginx .
-	docker build -f php/prod/Dockerfile -t project-php-prod .
-	docker build -f php/dev/Dockerfile -t project-php-dev .
+up: stop
+	docker-compose up
 
-run-dev:
-	docker stack deploy -c docker-compose-dev.yml $(NAME)
+stop:
+	docker-compose stop
 
-run-prod:
-	docker stack deploy -c docker-compose-prod.yml $(NAME)
+build: stop up
+	docker-compose build
 
-remove:
-	docker stack rm $(NAME)
-
-services:
-	docker stack services $(NAME)
-
-init:
-	docker swarm init
-
-leave:
-	docker swarm leave -f
+ps:
+	docker-compose ps
