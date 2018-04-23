@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+    nginx:
+        build: ./nginx/.
+        volumes:
+            - "./code:${PROJECT_DIR}"
+        ports:
+            - "27030:80"
+        env_file:
+            - .env
+    php-fpm:
+        build: ./php/.
+        volumes:
+            - "./code:${PROJECT_DIR}"
+        env_file:
+            - .env
+    mongodb:
+        image: mongo:3.7.5
+        volumes:
+            - ./mongodb/data:/data/db
