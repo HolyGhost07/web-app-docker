@@ -5,10 +5,10 @@ server {
 	root {{ .Env.PROJECT_DIR }};
 
 	location / {
-	    try_files $uri /public/index.php$is_args$args;
+	    try_files $uri /index.php$is_args$args;
 	}
 
-	location ~ ^/public/index\.php(.*)$ {
+	location ~ ^/index\.php(.*)$ {
 		fastcgi_pass php;
 	    fastcgi_split_path_info  ^(.+\.php)(.*)$;
 	    include fastcgi_params;

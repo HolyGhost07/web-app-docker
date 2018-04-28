@@ -2,7 +2,7 @@
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
-define('ROOT_PATH', dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
+define('ROOT_PATH', dirname(__FILE__) . DIRECTORY_SEPARATOR);
 
 require_once ROOT_PATH . 'vendor/autoload.php';
 
