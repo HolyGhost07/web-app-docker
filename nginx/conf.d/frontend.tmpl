@@ -2,13 +2,13 @@ server {
 	listen 80;
 	server_name localhost;
 
-	root /srv/http/www;
+	root {{ .Env.PROJECT_DIR }};
 
 	location / {
-	    try_files $uri /app.php$is_args$args;
+	    try_files $uri /public/index.php$is_args$args;
 	}
 
-	location ~ ^/app\.php(.*)$ {
+	location ~ ^/public/index\.php(.*)$ {
 		fastcgi_pass php;
 	    fastcgi_split_path_info  ^(.+\.php)(.*)$;
 	    include fastcgi_params;

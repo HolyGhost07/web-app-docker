@@ -13,7 +13,10 @@ up: stop init
 stop:
 	docker-compose stop
 
-build: stop up
+down:
+	docker-compose down
+
+build: stop
 	docker-compose build
 
 ps:
