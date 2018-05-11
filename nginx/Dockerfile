@@ -9,9 +9,14 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
 
 RUN rm -rf /etc/nginx/conf.d
 
-COPY upstreams.d /etc/nginx/upstreams.d
-COPY conf.d /etc/nginx/conf.d
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY nginx/upstreams.d /etc/nginx/upstreams.d
+COPY nginx/conf.d /etc/nginx/conf.d
+COPY nginx/nginx.conf /etc/nginx/nginx.conf
+
+ARG PROJECT_DIR
+ARG SRC_DIR
+
+COPY ${SRC_DIR} ${PROJECT_DIR}
 
 EXPOSE 80
 

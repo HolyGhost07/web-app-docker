@@ -8,3 +8,17 @@ RUN docker-php-ext-install zip && \
 
 RUN curl -ksS https://getcomposer.org/installer | php -- --install-dir=/usr/bin && \
     ln -s /usr/bin/composer.phar /usr/bin/composer
+
+ARG PROJECT_DIR
+ARG SRC_DIR
+
+RUN mkdir -p ${PROJECT_DIR}
+
+WORKDIR ${PROJECT_DIR}
+
+COPY ${SRC_DIR} ${PROJECT_DIR}
+
+RUN composer install --no-dev --no-progress --optimize-autoloader --ignore-platform-reqs
+
+EXPOSE 9000
+CMD ["php-fpm"]

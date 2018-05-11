@@ -8,8 +8,11 @@ services:
             args:
                 SRC_DIR: ${SRC_DIR}
                 PROJECT_DIR: ${PROJECT_DIR}
+                IMAGE_VERSION: ${IMAGE_VERSION}
         ports:
             - "${FRONTEND_PORT}:80"
+        volumes:
+            - "./${SRC_DIR}:${PROJECT_DIR}"
         env_file:
             - .env
         depends_on:
@@ -21,6 +24,9 @@ services:
             args:
                 SRC_DIR: ${SRC_DIR}
                 PROJECT_DIR: ${PROJECT_DIR}
+        command: /bin/sh -c "composer install --ignore-platform-reqs && php-fpm"
+        volumes:
+            - "./${SRC_DIR}:${PROJECT_DIR}"
         env_file:
             - .env
     mongodb:
